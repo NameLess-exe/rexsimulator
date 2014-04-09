@@ -37,6 +37,7 @@
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +103,7 @@
             // goToToolStripMenuItem
             // 
             this.goToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customToolStripMenuItem,
             this.pcToolStripMenuItem,
             this.spToolStripMenuItem,
             this.raToolStripMenuItem,
@@ -110,6 +112,13 @@
             this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
             this.goToToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.goToToolStripMenuItem.Text = "Go To";
+            // 
+            // customToolStripMenuItem
+            // 
+            this.customToolStripMenuItem.Name = "customToolStripMenuItem";
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.customToolStripMenuItem.Text = "custom";
+            this.customToolStripMenuItem.Click += new System.EventHandler(this.customToolStripMenuItem_Click);
             // 
             // pcToolStripMenuItem
             // 
@@ -174,6 +183,7 @@
         private System.Windows.Forms.Timer updateTimer;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem goToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pcToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem raToolStripMenuItem;

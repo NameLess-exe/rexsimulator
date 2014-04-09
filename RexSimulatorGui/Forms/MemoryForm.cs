@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using RexSimulator.Hardware;
 using RexSimulator.Hardware.Rex;
@@ -202,6 +203,19 @@ namespace RexSimulatorGui.Forms
         private void memoryListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
         {
             e.Item = mVirtualItems[e.ItemIndex];
+        }
+
+        private void customToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uint addr = 0;
+            string hex = Microsoft.VisualBasic.Interaction.InputBox("Enter the address to go to in hexadecimal").Replace("0x", "");
+            if (hex == "")
+                return;
+
+            if (uint.TryParse(hex, NumberStyles.HexNumber, null, out addr))
+                GotoAddress(addr, hex);
+            else
+                MessageBox.Show(hex + " is not a valid hexadecimal representation of a 32 bit unsigned int", "Invalid uint Hexadecimal");
         }
 
         private void pcToolStripMenuItem_Click(object sender, EventArgs e)
