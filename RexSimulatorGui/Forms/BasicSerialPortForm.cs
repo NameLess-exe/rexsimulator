@@ -27,6 +27,7 @@ namespace RexSimulatorGui.Forms
         private StringBuilder mRecvBuffer;
         private char[,] mScreenBuffer;
         private int mCX, mCY;
+        private string mLastUploadedFile;
 
         private bool mCursorOn = false; //for blinking cursor
         private bool mCursorEnabled = true; //TODO: cursor on by default
@@ -135,15 +136,26 @@ namespace RexSimulatorGui.Forms
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 if (files.Length == 1)
                 {
-                    try
-                    {
-                        mUploadFileWorker = new Thread(new ParameterizedThreadStart(UploadFileWorker));
-                        mUploadFileWorker.Start(files[0]);
-                    }
-                    catch
-                    {
-                    }
+                    uploadFile(files[0]);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Upload file.
+        /// </summary>
+        /// <param name="file">Path of file to upload.</param>
+        private void uploadFile(string file)
+        {
+            mSerialPort.SendString("load\n");
+            try
+            {
+                mUploadFileWorker = new Thread(new ParameterizedThreadStart(UploadFileWorker));
+                mUploadFileWorker.Start(file);
+                mLastUploadedFile = file;
+            }
+            catch
+            {
             }
         }
 
@@ -172,9 +184,21 @@ namespace RexSimulatorGui.Forms
             dlg.Filter = "SREC File|*.srec|All Files|*.*";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                mUploadFileWorker = new Thread(new ParameterizedThreadStart(UploadFileWorker));
-                mUploadFileWorker.Start(dlg.FileName);
+                uploadFile(dlg.FileName);
             }
+        }
+
+        /// <summary>
+        /// Reupload last file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void resendFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mLastUploadedFile == null)
+                return;
+
+            uploadFile(mLastUploadedFile);
         }
 
         /// <summary>

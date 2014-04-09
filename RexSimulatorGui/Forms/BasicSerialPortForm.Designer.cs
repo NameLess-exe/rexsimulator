@@ -33,13 +33,15 @@
             this.sendFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.serialLabel = new System.Windows.Forms.Label();
+            this.resendFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuStrip
             // 
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sendFileToolStripMenuItem});
+            this.sendFileToolStripMenuItem,
+            this.resendFileToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Size = new System.Drawing.Size(727, 24);
@@ -50,7 +52,7 @@
             // 
             this.sendFileToolStripMenuItem.Name = "sendFileToolStripMenuItem";
             this.sendFileToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.sendFileToolStripMenuItem.Text = "Send File";
+            this.sendFileToolStripMenuItem.Text = "&Send File";
             this.sendFileToolStripMenuItem.Click += new System.EventHandler(this.sendFileToolStripMenuItem_Click);
             // 
             // updateTimer
@@ -67,6 +69,13 @@
             this.serialLabel.Name = "serialLabel";
             this.serialLabel.Size = new System.Drawing.Size(727, 500);
             this.serialLabel.TabIndex = 2;
+            // 
+            // resendFileToolStripMenuItem
+            // 
+            this.resendFileToolStripMenuItem.Name = "resendFileToolStripMenuItem";
+            this.resendFileToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.resendFileToolStripMenuItem.Text = "&Resend File";
+            this.resendFileToolStripMenuItem.Click += new System.EventHandler(this.resendFileToolStripMenuItem_Click);
             // 
             // BasicSerialPortForm
             // 
@@ -93,5 +102,6 @@
         private System.Windows.Forms.ToolStripMenuItem sendFileToolStripMenuItem;
         private System.Windows.Forms.Timer updateTimer;
         private System.Windows.Forms.Label serialLabel;
+        private System.Windows.Forms.ToolStripMenuItem resendFileToolStripMenuItem;
     }
 }

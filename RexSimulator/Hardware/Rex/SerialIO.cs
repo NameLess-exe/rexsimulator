@@ -125,7 +125,7 @@ namespace RexSimulator.Hardware.Rex
         public SerialIO(uint baseAddress, uint size, Bus addressBus, Bus dataBus, string name)
             : base(baseAddress, size, addressBus, dataBus, name)
         {
-            
+
         }
         #endregion
 
@@ -161,7 +161,7 @@ namespace RexSimulator.Hardware.Rex
                 && !mAddressBus.IsWrite)
             {
                 uint address = mAddressBus.Value - mBaseAddress;
-                switch(address)
+                switch (address)
                 {
                     case 1: mDataBus.Write(Receive); break;
                     default: mDataBus.Write(mMemory[mAddressBus.Value - mBaseAddress]); break;
@@ -197,7 +197,7 @@ namespace RexSimulator.Hardware.Rex
             {
                 if (mClocksToReceive == 0)
                 {
-                    if((Status & 1) == 0 || mClocksToProcessRecv == 0)
+                    if ((Status & 1) == 0 || mClocksToProcessRecv == 0)
                     {
                         Receive = c;
                         break;
@@ -207,6 +207,16 @@ namespace RexSimulator.Hardware.Rex
                 Thread.Sleep(0);
             }
             while (true);
+        }
+
+        /// <summary>
+        /// Sends a string to WRAMP.
+        /// </summary>
+        /// <param name="s"></param>
+        public void SendString(string s)
+        {
+            foreach (char c in s)
+                Send(c);
         }
 
         /// <summary>
